@@ -1,8 +1,8 @@
 import random
-health_pts = int(75)
-food_pts = int(75)
+health_pts = int(60)
+food_pts = int(60)
 starv_pts = 0
-moral_pts = int(75)
+moral_pts = int(60)
 study_pts = int(40)
 money_pts = int(20)
 lose = 0
@@ -24,6 +24,8 @@ for i in range(15):
     print("4. Поесть дома")
     if study_pts < 25:
         print("5. Сдать долги по предметам")
+    if health_pts < 25:
+        print("6. Сходить в аптеку")
     choise_day = int(input())
     if choise_day == 1:
         go_home = 0
@@ -180,6 +182,22 @@ for i in range(15):
                 print("Ты не справился со всеми вопросами и провалил сдачу долга")
                 print("Очки Морали уменьшились на 10")
                 moral_pts -= 10
+    elif choise_day == 6:
+        hp_var = random.randint(1,101)
+        print("Накапливающийся стресс и большой трудообъём довёл тебя до невыносимой головной боли")
+        print("Ты идёшь в местную аптеку за анальгином")
+        if hp_var <= 50:
+            print("Купленный тобой анальгин на время избавил тебя от головной боли")
+            print("Очки Здоровья увеличились на 15")
+            print("Очки Обучения уменьшились на 10")
+            health_pts += 15
+            study_pts -= 10
+        elif hp_var > 50:
+            print("Выяснилось, что головная боль терзает большое число студентов, и анальгина в аптеке не осталось")
+            print("Очки Обучения уменьшились на 10")
+            print("Очки Морали уменьшились на 5")
+            study_pts -= 10
+            moral_pts -= 5
     print("День подходит к концу. Чем займешься?")
     print("1. Спать")
     print("2. Делать задания и готовиться к парам")
